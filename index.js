@@ -1,12 +1,12 @@
 const express = require("express");
 const app = express();
-const ejs = require("ejs");
+// const ejs = require("ejs");
 
 // membaca file ejs
-app.set("view engine", "ejs");
+// app.set("view engine", "ejs");
 
 // membaca file statis
-app.use(express.static("views"));
+// app.use(express.static("views"));
 
 app.use(express.json());
 app.use(
@@ -23,9 +23,9 @@ const router = require("./routes/movies");
 // app.get("/", (req, res) => {
 //     res.send("Welcome to sequelize & express demo");
 // });
-app.get("/", (req, res) => {
-    res.render("pages/home");
-});
+// app.get("/", (req, res) => {
+//     res.render("pages/home");
+// });
 // // // memanggil api
 // app.get("/", async (req, res) => {
 //     const obj = await fetchData();
@@ -37,7 +37,7 @@ app.get("/", (req, res) => {
 //     return fetch("http://localhost:5000/api/movies").then((res) => res.json());
 // }
 
-app.use("/api/movies", require("./routes/movies"));
+app.use("/", require("./routes/movies"));
 
 if (db) {
     app.listen(PORT, (req, res) => {
