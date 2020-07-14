@@ -6,13 +6,15 @@ const {
     getAllMovies,
     getMovieProfile,
     getMovieFilterGenre,
-    movieDelete
+    movieDelete,
+    movieEdit
 } = require('./controller')
 
 router.get('/', getAllMovies)
 router.get('/:id', getMovieProfile)
 router.post('/filterByGenre', getMovieFilterGenre)
 router.post('/', movieRegistration)
+router.put('/updateMovie/:id', movieEdit)
 router.delete('/:id', movieDelete)
 
 module.exports = router

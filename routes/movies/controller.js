@@ -69,6 +69,33 @@ module.exports = {
             res.send(error)
         }
     },
+    movieEdit: async (req, res) => {
+        const {
+            id
+        } = req.params;
+        const {
+            title,
+            year,
+            genre
+        } = req.body;
+        try {
+            const result = await Movie.update({
+                title,
+                year,
+                genre
+            }, {
+                where: {
+                    id_movies: id
+                }
+            })
+            res.send({
+                message: `Update data successfull`,
+                result: result
+            })
+        } catch (error) {
+            res.send(error)
+        }
+    },
     movieDelete: async (req, res) => {
         const {
             id
