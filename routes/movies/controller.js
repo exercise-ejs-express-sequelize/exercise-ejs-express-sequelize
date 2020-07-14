@@ -5,8 +5,9 @@ module.exports = {
     getAllMovies: async (req, res) => {
         try {
             const result = await Movie.findAll();
-            app.use("/", require("./routes/movies"));
-            res.render("views/pages/home.ejs");
+            // app.use("/", require("./routes/movies"));
+            res.render("pages/home.ejs", { result });
+            // res.render("views/pages/home.ejs");
         } catch (error) {
             res.send(error);
         }
