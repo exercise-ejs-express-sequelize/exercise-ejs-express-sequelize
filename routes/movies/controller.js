@@ -1,19 +1,25 @@
-const { Movie } = require("../../models");
-const { sequelize } = require("../../models/Movie");
+const {
+    Movie
+} = require("../../models");
+const {
+    sequelize
+} = require("../../models/Movie");
 
 module.exports = {
     getAllMovies: async (req, res) => {
         try {
             const result = await Movie.findAll();
-            // app.use("/", require("./routes/movies"));
-            res.render("pages/home.ejs", { result });
-            // res.render("views/pages/home.ejs");
+            res.render("pages/home.ejs", {
+                result
+            });
         } catch (error) {
             res.send(error);
         }
     },
     getMovieProfile: async (req, res) => {
-        const { id } = req.params;
+        const {
+            id
+        } = req.params;
         try {
             const result = await Movie.findByPk(id);
             res.send({
@@ -24,7 +30,9 @@ module.exports = {
         }
     },
     getMovieFilterGenre: async (req, res) => {
-        const { genre } = req.body;
+        const {
+            genre
+        } = req.body;
         try {
             const result = await Movie.findAll({
                 where: {
@@ -40,7 +48,11 @@ module.exports = {
         }
     },
     movieRegistration: async (req, res) => {
-        const { title, year, genre } = req.body;
+        const {
+            title,
+            year,
+            genre
+        } = req.body;
 
         try {
             const result = await Movie.create({
@@ -57,21 +69,24 @@ module.exports = {
         }
     },
     movieEdit: async (req, res) => {
-        const { id } = req.params;
-        const { title, year, genre } = req.body;
+        const {
+            id
+        } = req.params;
+        const {
+            title,
+            year,
+            genre
+        } = req.body;
         try {
-            const result = await Movie.update(
-                {
-                    title,
-                    year,
-                    genre,
+            const result = await Movie.update({
+                title,
+                year,
+                genre,
+            }, {
+                where: {
+                    id_movies: id,
                 },
-                {
-                    where: {
-                        id_movies: id,
-                    },
-                }
-            );
+            });
             res.send({
                 message: `Update data successfull`,
                 result: result,
@@ -81,7 +96,9 @@ module.exports = {
         }
     },
     movieDelete: async (req, res) => {
-        const { id } = req.params;
+        const {
+            id
+        } = req.params;
         try {
             const result = await Movie.destroy({
                 where: {
