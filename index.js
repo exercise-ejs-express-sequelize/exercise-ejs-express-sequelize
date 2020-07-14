@@ -27,15 +27,15 @@ app.get("/", (req, res) => {
     res.render("pages/home");
 });
 // // // memanggil api
-app.get("/", async (req, res) => {
-    const obj = await fetchData();
+// app.get("/", async (req, res) => {
+//     const obj = await fetchData();
 
-    res.render("pages/home", { obj });
-});
+//     res.render("pages/home", { obj });
+// });
 
-function fetchData() {
-    return fetch("http://localhost:5000/api/movies").then((res) => res.json());
-}
+// function fetchData() {
+//     return fetch("http://localhost:5000/api/movies").then((res) => res.json());
+// }
 
 app.use("/api/movies", require("./routes/movies"));
 
