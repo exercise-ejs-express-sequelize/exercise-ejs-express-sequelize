@@ -1,117 +1,100 @@
-const {
-    Movie
-} = require('../../models')
-const {
-    sequelize
-} = require('../../models/Movie')
-
+const { Movie } = require("../../models");
+const { sequelize } = require("../../models/Movie");
 
 module.exports = {
     getAllMovies: async (req, res) => {
         try {
-            const result = await Movie.findAll()
+            const result = await Movie.findAll();
+
             res.send({
-                result
-            })
+                result,
+            });
         } catch (error) {
-            res.send(error)
+            res.send(error);
         }
     },
     getMovieProfile: async (req, res) => {
-        const {
-            id
-        } = req.params
+        const { id } = req.params;
         try {
-            const result = await Movie.findByPk(id)
+            const result = await Movie.findByPk(id);
             res.send({
-                result
-            })
+                result,
+            });
         } catch (error) {
-            res.send(error)
+            res.send(error);
         }
     },
     getMovieFilterGenre: async (req, res) => {
-        const {
-            genre
-        } = req.body
+        const { genre } = req.body;
         try {
             const result = await Movie.findAll({
                 where: {
-                    genre: genre
-                }
-            })
+                    genre: genre,
+                },
+            });
             res.send({
                 message: `Filter by ${genre}`,
-                result
-            })
+                result,
+            });
         } catch (error) {
-            res.send(error)
+            res.send(error);
         }
     },
     movieRegistration: async (req, res) => {
-        const {
-            title,
-            year,
-            genre
-        } = req.body
+        const { title, year, genre } = req.body;
 
         try {
             const result = await Movie.create({
                 title,
                 year,
-                genre
-            })
+                genre,
+            });
             res.send({
                 message: `Registration successfull`,
-                result: result
-            })
+                result: result,
+            });
         } catch (error) {
-            res.send(error)
+            res.send(error);
         }
     },
     movieEdit: async (req, res) => {
-        const {
-            id
-        } = req.params;
-        const {
-            title,
-            year,
-            genre
-        } = req.body;
+        const { id } = req.params;
+        const { title, year, genre } = req.body;
         try {
-            const result = await Movie.update({
-                title,
-                year,
-                genre
-            }, {
-                where: {
-                    id_movies: id
+            const result = await Movie.update(
+                {
+                    title,
+                    year,
+                    genre,
+                },
+                {
+                    where: {
+                        id_movies: id,
+                    },
                 }
-            })
+            );
             res.send({
                 message: `Update data successfull`,
-                result: result
-            })
+                result: result,
+            });
         } catch (error) {
-            res.send(error)
+            res.send(error);
         }
     },
     movieDelete: async (req, res) => {
-        const {
-            id
-        } = req.params
+        const { id } = req.params;
         try {
             const result = await Movie.destroy({
                 where: {
-                    id_movies: id
-                }
-            })
+                    id_movies: id,
+                },
+            });
             res.send({
                 message: `Delete data successfull`,
-                result: result
-            })
+                result: result,
+            });
         } catch (error) {
-            res.send(error)
+            res.send(error);
         }
-    }
-}
+    },
+};

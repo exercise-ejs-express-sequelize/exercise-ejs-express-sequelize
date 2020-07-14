@@ -17,6 +17,7 @@ app.use(
 
 const { PORT } = require("./config");
 const db = require("./config");
+const router = require("./routes/movies");
 
 // //ROUTE
 // app.get("/", (req, res) => {
@@ -28,6 +29,7 @@ app.get("/", (req, res) => {
 // // // memanggil api
 app.get("/", async (req, res) => {
     const obj = await fetchData();
+
     res.render("pages/home", { obj });
 });
 
