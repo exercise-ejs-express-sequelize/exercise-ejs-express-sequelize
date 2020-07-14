@@ -8,17 +8,25 @@ app.use(
     })
 );
 
-const {
-    PORT
-} = require('./config');
-const db = require('./config')
+const { PORT } = require("./config");
+const db = require("./config");
 
 //ROUTE
 app.get("/", (req, res) => {
     res.send("Welcome to sequelize & express demo");
 });
 
-app.use('/api/movies', require('./routes/movies'))
+// memanggil api
+router.get("/", async (req, res) => {
+    const obj = await fetchData();
+    res.render("./views/pages/home", { obj });
+});
+
+function fetchData() {
+    return fetch("http://localhost:5000/api/movies").then((res) => res.json());
+}
+
+app.use("/api/movies", require("./routes/movies"));
 
 if (db) {
     app.listen(PORT, (req, res) => {
